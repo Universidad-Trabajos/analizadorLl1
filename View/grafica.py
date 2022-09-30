@@ -29,9 +29,8 @@ class Grafica:
 
         l3 = tk.Label(self.ventana, text="Ingrese las producciones: ")
         l3.pack()
-        entry3 = tk.Entry(self.ventana)
-        entry3.place(x=10, y=10, width=200, height=100)
-        entry3.pack()
+        entry3 = tk.Text(self.ventana)
+        entry3.pack(padx=280)
 
         button = tk.Button(self.ventana, text="Generar Análisis",
                            bg="light blue", borderwidth=5)
