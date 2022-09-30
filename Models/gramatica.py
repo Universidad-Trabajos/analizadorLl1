@@ -12,3 +12,9 @@ class Gramatica:
 
     def __init__(self) -> None:
         pass
+
+    def obtenerPrimero(self, noTerminal: str) -> List[str]:
+        pass
+
+    def cargarPrimeros(self) -> None:
+        pass
