@@ -1,4 +1,4 @@
-from ast import List
+from typing import List
 from Models.gramatica import Gramatica
 from View.grafica import Grafica
 
