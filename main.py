@@ -1,11 +1,40 @@
+from ast import List
 from Models.gramatica import Gramatica
 
-# def func_callBack():
-#     print("Hello World")
+class Main:
+    """Ejecuta el programa"""
 
-# def func_main(filepath, callback):
-#     callback()
+    gramatica: Gramatica
+    cadenaNoTerminales: str
+    cadenaTerminales: str
+    cadenaProducciones: str
+    listaNoTerminales: List[str]
+    listaTerminales: List[str]
+    listaProducciones: List[List[str]]
+    # grafica: Grafica
 
-# func_main("randomfile.txt", func_callBack)
+    def __init__(self) -> None:
+        self.prepararListas()
 
-gramatica = Gramatica()
+    def prepararListaNoTerminales(self) -> None:
+        pass
+
+    def prepararListaTerminales(self) -> None:
+        pass
+
+    def prepararListaProducciones(self) -> None:
+        pass
+
+    def prepararListas(self) -> None:
+        self.prepararListaNoTerminales()
+        self.prepararListaTerminales()
+        self.prepararListaProducciones()
+
+    def generarAnalisis(cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones) -> None:
+        pass
+
+    def generarTabla(self) -> None:
+        pass
+
+if __name__ == "__main__":
+    Main()
