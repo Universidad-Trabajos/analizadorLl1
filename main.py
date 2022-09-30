@@ -17,10 +17,10 @@ class Main:
         self.prepararListas()
 
     def prepararListaNoTerminales(self) -> None:
-        pass
+        self.listaNoTerminales = self.cadenaNoTerminales.split(",")
 
     def prepararListaTerminales(self) -> None:
-        pass
+        self.listaTerminales = self.cadenaTerminales.split(",")
 
     def prepararListaProducciones(self) -> None:
         pass
@@ -30,8 +30,10 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
-    def generarAnalisis(cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones) -> None:
-        pass
+    def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones) -> None:
+        self.cadenaNoTerminales = cadenaNoTerminales
+        self.cadenaTerminales = cadenaTerminales
+        self.cadenaProducciones = cadenaProducciones
 
     def generarTabla(self) -> None:
         pass
