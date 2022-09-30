@@ -2,6 +2,7 @@ from typing import List
 from Models.gramatica import Gramatica
 from View.grafica import Grafica
 
+
 class Main:
     """Ejecuta el programa"""
 
@@ -18,8 +19,7 @@ class Main:
         # self.prepararListas()
         # self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
         # self.gramatica.cargarPrimeros()
-        grafica = Grafica()
-        grafica.onClick(self.generarAnalisis)
+        grafica = Grafica(self.generarAnalisis)
 
     def prepararListaNoTerminales(self) -> None:
         self.listaNoTerminales = self.cadenaNoTerminales.split(",")
@@ -46,6 +46,7 @@ class Main:
 
     def generarTabla(self) -> None:
         pass
+
 
 if __name__ == "__main__":
     Main()

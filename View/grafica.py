@@ -8,7 +8,8 @@ class Grafica:
     terminales = ""
     producciones = ""
 
-    def __init__(self):
+    def __init__(self, callback):
+        self.callback = callback
         # Construir ventana principal
         self.ventana = tk.Tk()
         self.ventana.title("Analizador LL1")
@@ -43,7 +44,4 @@ class Grafica:
         self.noTerminales = self.entry.get()
         self.terminales = self.entry2.get()
         self.producciones = self.entry3.get("1.0", 'end-1c')
-        print(self.noTerminales, self.terminales, self.producciones)
-
-    def onClick(self, callback):
-        callback(self.noTerminales, self.terminales, self.producciones)
+        self.callback(self.noTerminales, self.terminales, self.producciones)
