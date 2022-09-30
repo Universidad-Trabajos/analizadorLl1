@@ -33,5 +33,8 @@ class Grafica:
         entry3.pack(padx=280)
 
         button = tk.Button(self.ventana, text="Generar Análisis",
-                           bg="light blue", borderwidth=5)
+                           bg="light blue", borderwidth=5, command=lambda: print(entry3.get("1.0", 'end-1c')))
         button.pack()
+
+    def mostrarEntrada(self, argumento):
+        print(argumento)
