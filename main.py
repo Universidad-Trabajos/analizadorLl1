@@ -37,6 +37,10 @@ class Main:
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
+        print("No terminales: ", self.cadenaNoTerminales)
+        print("Terminales: ", self.cadenaTerminales)
+        print("Producciones: ", self.cadenaProducciones)
+
     def generarTabla(self) -> None:
         pass
 
