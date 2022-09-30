@@ -1,5 +1,6 @@
 from ast import List
 from Models.gramatica import Gramatica
+from View.grafica import Grafica
 
 class Main:
     """Ejecuta el programa"""
@@ -11,12 +12,14 @@ class Main:
     listaNoTerminales: List[str]
     listaTerminales: List[str]
     listaProducciones: List[List[str]]
-    # grafica: Grafica
+    grafica: Grafica
 
     def __init__(self) -> None:
-        self.prepararListas()
-        self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
-        self.gramatica.cargarPrimeros()
+        # self.prepararListas()
+        # self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
+        # self.gramatica.cargarPrimeros()
+        grafica = Grafica()
+        grafica.onClick(self.generarAnalisis)
 
     def prepararListaNoTerminales(self) -> None:
         self.listaNoTerminales = self.cadenaNoTerminales.split(",")

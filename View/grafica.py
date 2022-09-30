@@ -44,3 +44,6 @@ class Grafica:
         self.terminales = self.entry2.get()
         self.producciones = self.entry3.get("1.0", 'end-1c')
         print(self.noTerminales, self.terminales, self.producciones)
+
+    def onClick(self, callback):
+        callback(self.noTerminales, self.terminales, self.producciones)
