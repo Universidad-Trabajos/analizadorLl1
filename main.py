@@ -1,7 +1,11 @@
-def func_callBack():
-    print("Hello World")
+from Models.gramatica import Gramatica
 
-def func_main(filepath, callback):
-    callback()
+# def func_callBack():
+#     print("Hello World")
 
-func_main("randomfile.txt", func_callBack)
+# def func_main(filepath, callback):
+#     callback()
+
+# func_main("randomfile.txt", func_callBack)
+
+gramatica = Gramatica()
