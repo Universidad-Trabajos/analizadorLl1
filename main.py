@@ -15,6 +15,8 @@ class Main:
 
     def __init__(self) -> None:
         self.prepararListas()
+        self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
+        self.gramatica.cargarPrimeros()
 
     def prepararListaNoTerminales(self) -> None:
         self.listaNoTerminales = self.cadenaNoTerminales.split(",")
@@ -30,7 +32,7 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
-    def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones) -> None:
+    def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> None:
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
