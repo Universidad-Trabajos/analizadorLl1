@@ -8,36 +8,35 @@ from Models.Helpers.helperListas import agregarElementoSinRepetir
 # print(lista)
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
-# noTerminales = ["E", "E'", "T", "T'", "F"]
-# terminales = ["+", "*", "(", ")", "id"]
-# producciones = [
-#     ["E", "TE'"],
-#     ["E'", "+TE'"],
-#     ["E'", "λ"],
-#     ["T", "FT'"],
-#     ["T'", "*FT'"],
-#     ["T'", "λ"],
-#     ["F", "(E)"],
-#     ["F", "id"]
-# ]
-# gramatica = Gramatica(noTerminales, terminales, producciones)
-# gramatica.producciones[0].derivacion
-# gramatica.cargarTodosLosPrimeros()
-# for primeros in gramatica.primeros:
-#     print(primeros)
-
-## PRUEBA CON UNA GRAMATICA REDUCIDA
-noTerminales = ["A", "B", "C"]
-terminales = ["a", "b", "m", "f", "gh"]
+noTerminales = ["E", "E'", "T", "T'", "F"]
+terminales = ["+", "*", "(", ")", "id"]
 producciones = [
-    ["A", "a"],
-    ["A", "b"],
-    ["B", "ghf"],
-    ["B", "Cm"],
-    ["C", "f"]
+    ["E", "TE'"],
+    ["E'", "+TE'"],
+    ["E'", "λ"],
+    ["T", "FT'"],
+    ["T'", "*FT'"],
+    ["T'", "λ"],
+    ["F", "(E)"],
+    ["F", "id"]
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
 gramatica.cargarTodosLosPrimeros()
+for primeros in gramatica.primeros:
+    print(primeros)
+
+## PRUEBA CON UNA GRAMATICA REDUCIDA
+# noTerminales = ["A", "B", "C"]
+# terminales = ["a", "b", "m", "f", "gh"]
+# producciones = [
+#     ["A", "a"],
+#     ["A", "b"],
+#     ["B", "ghf"],
+#     ["B", "Cm"],
+#     ["C", "f"]
+# ]
+# gramatica = Gramatica(noTerminales, terminales, producciones)
+# gramatica.cargarTodosLosPrimeros()
 # for primeros in gramatica.primeros:
 #     print(primeros)
 

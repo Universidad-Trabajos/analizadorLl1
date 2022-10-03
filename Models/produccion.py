@@ -9,7 +9,7 @@ class Produccion:
         self.noTerminal = noTerminal
         self.derivacion = derivacion
         
-    def obtenerPrimerSimbolo(self, noTerminales: List[str], terminales: List[str]) -> str:
+    def obtenerPrimerSimbolo(self, noTerminales: List[str], terminales: List[str]) -> list:
         # buscar si el primer simbolo es un noTerminal
         for noTerminal in noTerminales:
             if self.derivacion.find(noTerminal) != -1:

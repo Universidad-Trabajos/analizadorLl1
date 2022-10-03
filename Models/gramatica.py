@@ -63,14 +63,13 @@ class Gramatica:
 
             # si es "terminal" agregarlo a la lista
             if self.__simboloEs(simbolo) == "terminal":
-                agregarElementoSinRepetir(simbolosPrimeros, simbolo)
+                agregarElementoSinRepetir(simbolosPrimeros, [simbolo])
 
             # si es "noTerminal" agregar los primeros de ese noTerminal
             elif self.__simboloEs(simbolo) == "noTerminal":
                 agregarElementoSinRepetir(simbolosPrimeros, self.__obtenerSimbolosPrimeros(simbolo))
             else:
                 print("Error: simbolo no reconocido")
-        print(f"Primeros de {noTerminal}: {simbolosPrimeros}")
         return simbolosPrimeros
 
     def cargarTodosLosPrimeros(self) -> None:
@@ -79,6 +78,5 @@ class Gramatica:
         """
         for noTerminal in self.noTerminales:
             primerosSimbolos = self.__obtenerSimbolosPrimeros(noTerminal)
-            # print(f"Primeros de {noTerminal}: {primerosSimbolos}")
-            # primeros = Primeros(noTerminal, primerosSimbolos)
-            # self.primeros.append(primeros)
+            primeros = Primeros(noTerminal, primerosSimbolos)
+            self.primeros.append(primeros)
