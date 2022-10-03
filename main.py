@@ -31,8 +31,21 @@ class Main:
     def prepararListaProducciones(self) -> None:
         # Definir listas para las producciones
         separador = '\n'
-        listaProducciones = self.cadenaProducciones.split(separador)
-        print(listaProducciones)
+        listaProducciones1 = self.cadenaProducciones.split(separador)
+        produccion = self.retornarProducciones(listaProducciones1)
+        print(produccion)
+
+    def retornarProducciones(self, listaProducciones1):
+        produccion = []
+        for producciones in listaProducciones1:
+            inicio = producciones.split("->")
+            if "|" in producciones:
+                derivacion = inicio[1].split("|")
+                for i in derivacion:
+                    produccion.append([inicio[0], i])
+            else:
+                produccion.append(inicio)
+        return produccion
 
     def prepararListas(self) -> None:
         self.prepararListaNoTerminales()
@@ -44,9 +57,11 @@ class Main:
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
-        print("No terminales: ", self.cadenaNoTerminales)
-        print("Terminales: ", self.cadenaTerminales)
-        print("Producciones: ", self.cadenaProducciones)
+        self.prepararListaProducciones()
+
+        # print("No terminales: ", self.cadenaNoTerminales)
+        # print("Terminales: ", self.cadenaTerminales)
+        # print("Producciones: ", self.cadenaProducciones)
 
     def generarTabla(self) -> None:
         pass
