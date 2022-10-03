@@ -18,7 +18,6 @@ class Primeros:
             else:
                 cadena = cadena + str(noTerminal) + ", "
             count += 1
-        print(cadena)
         return '{' + cadena+'}'
 
     def __str__(self) -> str:

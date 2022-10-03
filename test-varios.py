@@ -2,36 +2,37 @@ from typing import List
 from Models.gramatica import Gramatica
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
-# noTerminales = ["E", "E'", "T", "T'", "F"]
-# terminales = ["+", "*", "(", ")", "id"]
-# producciones = [
-#     ["E", "TE'"],
-#     ["E'", "+TE'"],
-#     ["E'", "λ"],
-#     ["T", "FT'"],
-#     ["T'", "*FT'"],
-#     ["T'", "λ"],
-#     ["F", "(E)"],
-#     ["F", "id"]
-# ]
-# gramatica = Gramatica(noTerminales, terminales, producciones)
-
-## PRUEBA CON UNA GRAMATICA REDUCIDA
-noTerminales = ["A", "B", "C"]
-terminales = ["a", "b", "m", "f"]
+noTerminales = ["E", "E'", "T", "T'", "F"]
+terminales = ["+", "*", "(", ")", "id"]
 producciones = [
-    ["A", "a"],
-    ["A", "b"],
-    ["B", "a"],
-    ["B", "Cm"],
-    ["C", "f"]
+    ["E", "TE'"],
+    ["E'", "+TE'"],
+    ["E'", "λ"],
+    ["T", "FT'"],
+    ["T'", "*FT'"],
+    ["T'", "λ"],
+    ["F", "(E)"],
+    ["F", "id"]
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
 gramatica.cargarTodosLosPrimeros()
-print("Accediendo directamente", gramatica.primeros[1].conjuntoNoTerminales)
-print("\nAccediendo por __str__")
 for primeros in gramatica.primeros:
     print(primeros)
+
+## PRUEBA CON UNA GRAMATICA REDUCIDA
+# noTerminales = ["A", "B", "C"]
+# terminales = ["a", "b", "m", "f"]
+# producciones = [
+#     ["A", "a"],
+#     ["A", "b"],
+#     ["B", "a"],
+#     ["B", "Cm"],
+#     ["C", "f"]
+# ]
+# gramatica = Gramatica(noTerminales, terminales, producciones)
+# gramatica.cargarTodosLosPrimeros()
+# for primeros in gramatica.primeros:
+#     print(primeros)
 
 ## AGREGAR UNA PRODUCCION A UNA LISTA
 # nuevaProduccion = Produccion("E", "TE'")
