@@ -17,9 +17,8 @@ class Primeros:
                 cadena += noTerminal
             else:
                 cadena += noTerminal + ", "
-            count += 1
         return cadena
 
     def __str__(self) -> str:
         texto = "prim({}) = {{}}"
-        return texto.format(self.noTerminal, self.conjuntoNoTerminales)
+        return texto.format(self.noTerminal, self.cadenaNoTerminales)
