@@ -1,5 +1,11 @@
 from typing import List
 from Models.gramatica import Gramatica
+from Models.Helpers.helperListas import agregarElementoSinRepetir
+
+## AGREGAR ELEMENTOS SIN REPETIR A LISTA
+# lista = ["a", "b", "c"]
+# lista = agregarElementoSinRepetir(lista, ["d"])
+# print(lista)
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
 # noTerminales = ["E", "E'", "T", "T'", "F"]
@@ -21,17 +27,17 @@ from Models.gramatica import Gramatica
 #     print(primeros)
 
 ## PRUEBA CON UNA GRAMATICA REDUCIDA
-# noTerminales = ["A", "B", "C"]
-# terminales = ["a", "b", "m", "f", "gh"]
-# producciones = [
-#     ["A", "a"],
-#     ["A", "b"],
-#     ["B", "ghf"],
-#     ["B", "Cm"],
-#     ["C", "f"]
-# ]
-# gramatica = Gramatica(noTerminales, terminales, producciones)
-# gramatica.cargarTodosLosPrimeros()
+noTerminales = ["A", "B", "C"]
+terminales = ["a", "b", "m", "f", "gh"]
+producciones = [
+    ["A", "a"],
+    ["A", "b"],
+    ["B", "ghf"],
+    ["B", "Cm"],
+    ["C", "f"]
+]
+gramatica = Gramatica(noTerminales, terminales, producciones)
+gramatica.cargarTodosLosPrimeros()
 # for primeros in gramatica.primeros:
 #     print(primeros)
 
@@ -64,8 +70,8 @@ from Models.gramatica import Gramatica
 
 ## CONJUNTO CON CARACTERES DOBLES
 # FIX: No funciona esto: {"a"} union {"ab"}. Problema: divide al segundo conjunto
-conjunto = set()
-conjunto.add("a")
-simbolo = "ba"
-conjunto.update(simbolo)
-print(conjunto)
+# conjunto = set()
+# conjunto.add("a")
+# simbolo = "ba"
+# conjunto.update(simbolo)
+# print(conjunto)
