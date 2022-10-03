@@ -1,3 +1,4 @@
+from tkinter.ttk import Separator
 from typing import List
 from Models.gramatica import Gramatica
 from View.grafica import Grafica
@@ -28,7 +29,10 @@ class Main:
         self.listaTerminales = self.cadenaTerminales.split(",")
 
     def prepararListaProducciones(self) -> None:
-        pass
+        # Definir listas para las producciones
+        separador = '\n'
+        listaProducciones = self.cadenaProducciones.split(separador)
+        print(listaProducciones)
 
     def prepararListas(self) -> None:
         self.prepararListaNoTerminales()
