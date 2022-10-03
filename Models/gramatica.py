@@ -54,17 +54,19 @@ class Gramatica:
             simbolo = produccion.obtenerPrimerSimbolo(self.noTerminales, self.terminales)
             # si es "terminal" agregarlo a la lista
             if self.simboloEs(simbolo) == "terminal":
-                simbolosPrimeros.update(simbolo)
+                simbolosPrimeros.add(simbolo)
             # si es "noTerminal" agregar los primeros de ese noTerminal
             elif self.simboloEs(simbolo) == "noTerminal":
-                simbolosPrimeros.update(self.obtenerSimbolosPrimeros(simbolo))
+                simbolosPrimeros.add(self.obtenerSimbolosPrimeros(simbolo))
             else:
                 print("Error: simbolo no reconocido")
+            print("simbolosPrimeros: ", simbolosPrimeros)
 
         return simbolosPrimeros
 
     def cargarTodosLosPrimeros(self) -> None:
         for noTerminal in self.noTerminales:
             primerosSimbolos = list(self.obtenerSimbolosPrimeros(noTerminal))
-            primeros = Primeros(noTerminal, primerosSimbolos)
-            self.primeros.append(primeros)
+            # print("primerosSimbolos: ", primerosSimbolos)
+            # primeros = Primeros(noTerminal, primerosSimbolos)
+            # self.primeros.append(primeros)

@@ -2,30 +2,31 @@ from typing import List
 from Models.gramatica import Gramatica
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
-noTerminales = ["E", "E'", "T", "T'", "F"]
-terminales = ["+", "*", "(", ")", "id"]
-producciones = [
-    ["E", "TE'"],
-    ["E'", "+TE'"],
-    ["E'", "λ"],
-    ["T", "FT'"],
-    ["T'", "*FT'"],
-    ["T'", "λ"],
-    ["F", "(E)"],
-    ["F", "id"]
-]
-gramatica = Gramatica(noTerminales, terminales, producciones)
-gramatica.cargarTodosLosPrimeros()
-for primeros in gramatica.primeros:
-    print(primeros)
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# terminales = ["+", "*", "(", ")", "id"]
+# producciones = [
+#     ["E", "TE'"],
+#     ["E'", "+TE'"],
+#     ["E'", "λ"],
+#     ["T", "FT'"],
+#     ["T'", "*FT'"],
+#     ["T'", "λ"],
+#     ["F", "(E)"],
+#     ["F", "id"]
+# ]
+# gramatica = Gramatica(noTerminales, terminales, producciones)
+# gramatica.producciones[0].derivacion
+# gramatica.cargarTodosLosPrimeros()
+# for primeros in gramatica.primeros:
+#     print(primeros)
 
 ## PRUEBA CON UNA GRAMATICA REDUCIDA
 # noTerminales = ["A", "B", "C"]
-# terminales = ["a", "b", "m", "f"]
+# terminales = ["a", "b", "m", "f", "gh"]
 # producciones = [
 #     ["A", "a"],
 #     ["A", "b"],
-#     ["B", "a"],
+#     ["B", "ghf"],
 #     ["B", "Cm"],
 #     ["C", "f"]
 # ]
@@ -60,3 +61,11 @@ for primeros in gramatica.primeros:
 # conjunto = {"a", "b", "c"}
 # lista = list(conjunto)
 # print(lista)
+
+## CONJUNTO CON CARACTERES DOBLES
+# FIX: No funciona esto: {"a"} union {"ab"}. Problema: divide al segundo conjunto
+conjunto = set()
+conjunto.add("a")
+simbolo = "ba"
+conjunto.update(simbolo)
+print(conjunto)
