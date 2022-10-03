@@ -21,19 +21,20 @@ class Main:
         # self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
         # self.gramatica.cargarPrimeros()
         grafica = Grafica(self.generarAnalisis)
+        gramatica = Gramatica(self.listaNoTerminales,
+                              self.listaTerminales, self.listaProducciones)
 
     def prepararListaNoTerminales(self) -> None:
-        self.listaNoTerminales = self.cadenaNoTerminales.split(",")
+        self.listaNoTerminales = self.cadenaNoTerminales.split(",").strip()
 
     def prepararListaTerminales(self) -> None:
-        self.listaTerminales = self.cadenaTerminales.split(",")
+        self.listaTerminales = self.cadenaTerminales.split(",").strip()
 
     def prepararListaProducciones(self) -> None:
         # Definir listas para las producciones
         separador = '\n'
         listaProducciones1 = self.cadenaProducciones.split(separador)
-        produccion = self.retornarProducciones(listaProducciones1)
-        print(produccion)
+        self.listaProducciones = self.retornarProducciones(listaProducciones1)
 
     def retornarProducciones(self, listaProducciones1):
         produccion = []
