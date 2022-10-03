@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 class Grafica:
     anchoVentana = 700
     altoVentana = 980
