@@ -1,6 +1,5 @@
 from typing import List
 from Models.gramatica import Gramatica
-from Models.produccion import Produccion
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
 # noTerminales = ["E", "E'", "T", "T'", "F"]
@@ -29,6 +28,10 @@ producciones = [
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
 gramatica.cargarTodosLosPrimeros()
+print("Accediendo directamente", gramatica.primeros[1].conjuntoNoTerminales)
+print("\nAccediendo por __str__")
+for primeros in gramatica.primeros:
+    print(primeros)
 
 ## AGREGAR UNA PRODUCCION A UNA LISTA
 # nuevaProduccion = Produccion("E", "TE'")
