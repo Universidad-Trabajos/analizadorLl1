@@ -11,8 +11,8 @@ class Main:
     cadenaNoTerminales: str
     cadenaTerminales: str
     cadenaProducciones: str
-    listaNoTerminales: List[str]
-    listaTerminales: List[str]
+    listaNoTerminales: List[str] = []
+    listaTerminales: List[str] = []
     listaProducciones: List[List[str]]
     grafica: Grafica
 
@@ -21,19 +21,24 @@ class Main:
         # self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
         # self.gramatica.cargarPrimeros()
         grafica = Grafica(self.generarAnalisis)
+        gramatica = Gramatica(self.listaNoTerminales,
+                              self.listaTerminales, self.listaProducciones)
 
     def prepararListaNoTerminales(self) -> None:
-        self.listaNoTerminales = self.cadenaNoTerminales.split(",")
+        listaNoTerminal = self.cadenaNoTerminales.split(",")
+        for noTerminal in listaNoTerminal:
+            self.listaNoTerminales.append(noTerminal.strip())
 
     def prepararListaTerminales(self) -> None:
-        self.listaTerminales = self.cadenaTerminales.split(",")
+        listaTerminal = self.cadenaTerminales.split(",")
+        for terminal in listaTerminal:
+            self.listaTerminales.append(terminal.strip())
 
     def prepararListaProducciones(self) -> None:
         # Definir listas para las producciones
         separador = '\n'
         listaProducciones1 = self.cadenaProducciones.split(separador)
-        produccion = self.retornarProducciones(listaProducciones1)
-        print(produccion)
+        self.listaProducciones = self.retornarProducciones(listaProducciones1)
 
     def retornarProducciones(self, listaProducciones1):
         produccion = []
@@ -52,12 +57,15 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
+        print(self.listaNoTerminales)
+        print(self.listaTerminales)
+
     def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> None:
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
-        self.prepararListaProducciones()
+        self.prepararListas()
 
         # print("No terminales: ", self.cadenaNoTerminales)
         # print("Terminales: ", self.cadenaTerminales)
