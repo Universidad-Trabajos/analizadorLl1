@@ -11,8 +11,8 @@ class Main:
     cadenaNoTerminales: str
     cadenaTerminales: str
     cadenaProducciones: str
-    listaNoTerminales: List[str]
-    listaTerminales: List[str]
+    listaNoTerminales: List[str] = []
+    listaTerminales: List[str] = []
     listaProducciones: List[List[str]]
     grafica: Grafica
 
@@ -25,10 +25,14 @@ class Main:
                               self.listaTerminales, self.listaProducciones)
 
     def prepararListaNoTerminales(self) -> None:
-        self.listaNoTerminales = self.cadenaNoTerminales.split(",").strip()
+        listaNoTerminal = self.cadenaNoTerminales.split(",")
+        for noTerminal in listaNoTerminal:
+            self.listaNoTerminales.append(noTerminal.strip())
 
     def prepararListaTerminales(self) -> None:
-        self.listaTerminales = self.cadenaTerminales.split(",").strip()
+        listaTerminal = self.cadenaTerminales.split(",")
+        for terminal in listaTerminal:
+            self.listaTerminales.append(terminal.strip())
 
     def prepararListaProducciones(self) -> None:
         # Definir listas para las producciones
@@ -53,12 +57,15 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
+        print(self.listaNoTerminales)
+        print(self.listaTerminales)
+
     def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> None:
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
-        self.prepararListaProducciones()
+        self.prepararListas()
 
         # print("No terminales: ", self.cadenaNoTerminales)
         # print("Terminales: ", self.cadenaTerminales)
