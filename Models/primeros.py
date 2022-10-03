@@ -5,21 +5,22 @@ class Primeros:
     noTerminal: str
     conjuntoNoTerminales: List[str]
 
-    def __init__(self, noTerminal:str, conjuntoNoTerminales:List[str]) -> None:
+    def __init__(self, noTerminal: str, conjuntoNoTerminales: List[str]) -> None:
         self.noTerminal = noTerminal
         self.conjuntoNoTerminales = conjuntoNoTerminales
 
     def cadenaNoTerminales(self) -> str:
-        cadena = ""
+        cadena: str = ""
         count = 0
         for noTerminal in self.conjuntoNoTerminales:
-            if count == len(self.conjuntoNoTerminales):
-                cadena += noTerminal
+            if count == len(self.conjuntoNoTerminales) - 1:
+                cadena = cadena + str(noTerminal)
             else:
-                cadena += noTerminal + ", "
+                cadena = cadena + str(noTerminal) + ", "
             count += 1
-        return cadena
+        print(cadena)
+        return '{' + cadena+'}'
 
     def __str__(self) -> str:
-        texto = "prim({}) = {{}}"
-        return texto.format(self.noTerminal, self.conjuntoNoTerminales)
+        texto = "prim({}) = {}"
+        return texto.format(self.noTerminal, self.cadenaNoTerminales())
