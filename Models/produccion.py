@@ -25,5 +25,5 @@ class Produccion:
     def obtenerDerivacion(self) -> str:
         pass
 
-    def toString(self) -> str:
-        pass
+    def __str__(self) -> str:
+        return ("{} -> {}".format(self.noTerminal, self.derivacion))

@@ -8,22 +8,22 @@ from Models.Helpers.helperListas import agregarElementoSinRepetir
 # print(lista)
 
 ## PRUEBA CON LA GRAMATICA COMPLETA
-noTerminales = ["E", "E'", "T", "T'", "F"]
-terminales = ["+", "*", "(", ")", "id"]
-producciones = [
-    ["E", "TE'"],
-    ["E'", "+TE'"],
-    ["E'", "λ"],
-    ["T", "FT'"],
-    ["T'", "*FT'"],
-    ["T'", "λ"],
-    ["F", "(E)"],
-    ["F", "id"]
-]
-gramatica = Gramatica(noTerminales, terminales, producciones)
-gramatica.cargarTodosLosPrimeros()
-for primeros in gramatica.primeros:
-    print(primeros)
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# terminales = ["+", "*", "(", ")", "id"]
+# producciones = [
+#     ["E", "TE'"],
+#     ["E'", "+TE'"],
+#     ["E'", "λ"],
+#     ["T", "FT'"],
+#     ["T'", "*FT'"],
+#     ["T'", "λ"],
+#     ["F", "(E)"],
+#     ["F", "id"]
+# ]
+# gramatica = Gramatica(noTerminales, terminales, producciones)
+# gramatica.cargarTodosLosPrimeros()
+# for primeros in gramatica.primeros:
+#     print(primeros)
 
 ## PRUEBA CON UNA GRAMATICA REDUCIDA
 # noTerminales = ["A", "B", "C"]
@@ -74,3 +74,8 @@ for primeros in gramatica.primeros:
 # simbolo = "ba"
 # conjunto.update(simbolo)
 # print(conjunto)
+
+## QUITAR ESPACIOS PRINCIPIO Y FINAL CADENA
+# cadena = " EA "
+# cadena = cadena.strip()
+# print("B"+cadena+"A")

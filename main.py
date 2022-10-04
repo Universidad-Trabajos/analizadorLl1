@@ -17,12 +17,7 @@ class Main:
     grafica: Grafica
 
     def __init__(self) -> None:
-        # self.prepararListas()
-        # self.gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
-        # self.gramatica.cargarPrimeros()
         grafica = Grafica(self.generarAnalisis)
-        gramatica = Gramatica(self.listaNoTerminales,
-                              self.listaTerminales, self.listaProducciones)
 
     def prepararListaNoTerminales(self) -> None:
         listaNoTerminal = self.cadenaNoTerminales.split(",")
@@ -40,15 +35,17 @@ class Main:
         listaProducciones1 = self.cadenaProducciones.split(separador)
         self.listaProducciones = self.retornarProducciones(listaProducciones1)
 
-    def retornarProducciones(self, listaProducciones1):
+    def retornarProducciones(self, listaProducciones1: List[str]):
         produccion = []
         for producciones in listaProducciones1:
             inicio = producciones.split("->")
             if "|" in producciones:
                 derivacion = inicio[1].split("|")
                 for i in derivacion:
-                    produccion.append([inicio[0], i])
+                    produccion.append([inicio[0].strip(), i.strip()])
             else:
+                # strip para cada item interno
+                inicio = [inicio[0].strip(), inicio[1].strip()]
                 produccion.append(inicio)
         return produccion
 
@@ -57,19 +54,16 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
-        print(self.listaNoTerminales)
-        print(self.listaTerminales)
-
     def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> None:
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
         self.prepararListas()
-
-        # print("No terminales: ", self.cadenaNoTerminales)
-        # print("Terminales: ", self.cadenaTerminales)
-        # print("Producciones: ", self.cadenaProducciones)
+        gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
+        gramatica.cargarTodosLosPrimeros()
+        for primero in gramatica.primeros:
+            print(primero)
 
     def generarTabla(self) -> None:
         pass
