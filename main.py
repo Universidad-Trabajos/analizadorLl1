@@ -62,9 +62,7 @@ class Main:
         self.prepararListas()
         gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
         gramatica.cargarTodosLosPrimeros()
-        for primero in gramatica.primeros:
-            print(primero)
-
+        
     def generarTabla(self) -> None:
         pass
 
