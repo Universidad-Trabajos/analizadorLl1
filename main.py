@@ -14,10 +14,10 @@ class Main:
     listaNoTerminales: List[str] = []
     listaTerminales: List[str] = []
     listaProducciones: List[List[str]]
-    grafica: Grafica
+    grafica: Grafica = None
 
     def __init__(self) -> None:
-        grafica = Grafica(self.generarAnalisis)
+        self.grafica = Grafica(self.generarAnalisis)
 
     def prepararListaNoTerminales(self) -> None:
         listaNoTerminal = self.cadenaNoTerminales.split(",")
@@ -54,15 +54,21 @@ class Main:
         self.prepararListaTerminales()
         self.prepararListaProducciones()
 
-    def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> None:
+    def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> List:
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
 
         self.prepararListas()
-        gramatica = Gramatica(self.listaNoTerminales, self.listaTerminales, self.listaProducciones)
+        gramatica = Gramatica(self.listaNoTerminales,
+                              self.listaTerminales, self.listaProducciones)
         gramatica.cargarTodosLosPrimeros()
-        
+        listaRetorno = [gramatica.primeros]
+        return listaRetorno
+        # self.grafica.generarVentanaResultado()
+        # for primero in gramatica.primeros:
+        #     print(primero)
+
     def generarTabla(self) -> None:
         pass
 

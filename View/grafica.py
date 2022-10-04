@@ -43,18 +43,20 @@ class Grafica:
 
     def ejecutar(self) -> None:
         self.capturarEntradas()
-        self.generarVentanaResultado()
 
     def capturarEntradas(self):
         self.noTerminales = self.entry.get()
         self.terminales = self.entry2.get()
         self.producciones = self.entry3.get("1.0", 'end-1c')
-        self.callback(self.noTerminales, self.terminales, self.producciones)
+        listaRetorno = self.callback(
+            self.noTerminales, self.terminales, self.producciones)
+        texto=""
+        for i in listaRetorno[0]: texto+=str(i) + "\n"
+        self.generarVentanaResultado(texto)
 
     def generarVentanaResultado(self, conjuntoPrimeros="", conjuntoSiguientes="", conjuntoPrediccion="") -> None:
         '''Genera la ventana con el resultado del análisis LL1'''
         # Valores por defecto
-        conjuntoPrimeros = "Prueba primeros"
         conjuntoSiguientes = "Prueba Siguientes"
         conjuntoPrediccion = "Prueba conjunto prediccion"
         self.ventanaResultado = tk.Tk()

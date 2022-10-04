@@ -9,7 +9,11 @@ class Produccion:
         self.noTerminal = noTerminal
         self.derivacion = derivacion
         
-    def obtenerPrimerSimbolo(self, noTerminales: List[str], terminales: List[str]) -> list:
+    def obtenerPrimerSimbolo(self, noTerminales: List[str], terminales: List[str]) -> str:
+        """
+        Se posiciona al principio de la derivacion y obtiene el primer simbolo, ya sea terminal o noTerminal.
+        """
+
         # buscar si el primer simbolo es un noTerminal
         for noTerminal in noTerminales:
             if self.derivacion.find(noTerminal) != -1:
@@ -22,8 +26,36 @@ class Produccion:
                 if self.derivacion.index(terminal) == 0:
                     return terminal
 
-    def obtenerDerivacion(self) -> str:
-        pass
+    def contieneNoTerminal(self, noTerminal: str) -> bool:
+        return self.derivacion.find(noTerminal) != -1
+
+    def obtenerSimboloSiguiente(self, noTerminal: str, noTerminales: List[str], terminales: List[str]) -> str:
+        """
+        Retorna el simbolo siguiente al noTerminal dado, ya sea terminal o noTerminal.
+        """
+
+        # buscar el indice del noTerminal
+        indice = self.derivacion.index(noTerminal)
+
+        # obtener los caracteres que estan despues del noTerminal
+        caracteresSiguientes = self.derivacion[indice + 1:]
+
+        # si no existe caracteres siguientes, retornar lambda
+        if caracteresSiguientes == "":
+            return "λ"
+
+        # obtener el primer simbolo de los caracteres siguientes
+        # buscar si el primer simbolo es un noTerminal
+        for noTerminal in noTerminales:
+            if caracteresSiguientes.find(noTerminal) != -1:
+                if caracteresSiguientes.index(noTerminal) == 0:
+                    return noTerminal
+
+        # buscar si el primer simbolo es un terminal
+        for terminal in terminales:
+            if caracteresSiguientes.find(terminal) != -1:
+                if caracteresSiguientes.index(terminal) == 0:
+                    return terminal
 
     def __str__(self) -> str:
         return ("{} -> {}".format(self.noTerminal, self.derivacion))
