@@ -82,8 +82,35 @@ from Models.produccion import Produccion
 # print("B"+cadena+"A")
 
 ## OBTENER EL SIGUIENTE SIMBOLO DADO UN NO TERMINAL
-noTerminales = ["A", "B", "C"]
-terminales = ["a", "b", "m", "f", "gh", "c", "λ"]
-produccion = Produccion("A", "aB")
-simboloSiguiente = produccion.obtenerSimboloSiguiente("B", noTerminales, terminales)
-print(simboloSiguiente)
+# noTerminales = ["A", "B", "C"]
+# terminales = ["a", "b", "m", "f", "gh", "c", "λ"]
+# produccion = Produccion("A", "aB")
+# simboloSiguiente = produccion.obtenerSimboloSiguiente("B", noTerminales, terminales)
+# print(simboloSiguiente)
+
+## REMOVER UN ELEMENTO DE UNA LISTA
+# lista = ["a", "b", "λ"]
+# lista.remove("λ")
+# print(lista)
+
+## OBTENER LOS SIGUIENTES DE TODOS LOS NO TERMINALES
+noTerminales = ["E", "E'", "T", "T'", "F"]
+terminales = ["+", "*", "(", ")", "id"]
+producciones = [
+    ["E", "TE'"],
+    ["E'", "+TE'"],
+    ["E'", "λ"],
+    ["T", "FT'"],
+    ["T'", "*FT'"],
+    ["T'", "λ"],
+    ["F", "(E)"],
+    ["F", "id"]
+]
+gramatica = Gramatica(noTerminales, terminales, producciones)
+gramatica.cargarTodosLosPrimeros()
+gramatica.cargarTodosLosSiguientes()
+
+## LA PRODUCCION CONTIENE UN NO TERMINAL
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# produccion = Produccion("E", "TE'")
+# print(produccion.contieneNoTerminal("E", noTerminales))

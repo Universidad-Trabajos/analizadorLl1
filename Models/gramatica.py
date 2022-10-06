@@ -83,13 +83,13 @@ class Gramatica:
             primeros = Primeros(noTerminal, primerosSimbolos)
             self.primeros.append(primeros)
 
-    def __obtenerPrimerosDelNoTerminal(self, noTerminal: str) -> List[Primeros]:
+    def __obtenerConjuntoPrimerosYaExistente(self, noTerminal: str) -> List[str]:
         """
         Retorna la lista de primeros del noTerminal dado.
         """
         for primero in self.primeros:
             if primero.noTerminal == noTerminal:
-                return primero.cadenaNoTerminales
+                return primero.conjuntoNoTerminales
 
     def __obtenerProduccionesQueContengan(self, noTerminal: str) -> List[Produccion]:
         """
@@ -97,9 +97,26 @@ class Gramatica:
         """
         listaProducciones = []
         for produccion in self.producciones:
-            if produccion.contieneNoTerminal(noTerminal):
+            if produccion.contieneNoTerminal(noTerminal, self.noTerminales):
                 listaProducciones.append(produccion)
         return listaProducciones
+
+    # def __obtenerSiguientesDelNoTerminal(self, noTerminal: str) -> List[Siguientes]:
+    #     """
+    #     Retorna la lista de siguientes del noTerminal dado.
+    #     """
+    #     for siguiente in self.siguientes:
+    #         if siguiente.noTerminal == noTerminal:
+    #             return siguiente.conjuntoNoTerminales
+
+    def __obtenerConjuntosSimbolosSiguientesYaExistente(self, noTerminal: str) -> List[str]:
+        """
+        Retorna los siguientes de un noTerminal ya existente. No se realiza el analisis,
+        el conjunto de simbolos siguientes existe.
+        """
+        for siguiente in self.siguientes:
+            if siguiente.noTerminal == noTerminal:
+                return siguiente.conjuntoNoTerminales
 
     def __obtenerConjuntosSimbolosSiguientes(self, noTerminal: str) -> List[str]:
         """
@@ -116,23 +133,31 @@ class Gramatica:
 
         # Para cada produccion obtener el simbolo siguiente del noTerminal dado
         for produccion in producciones:
+
             simboloSiguiente = produccion.obtenerSimboloSiguiente(noTerminal, self.noTerminales, self.terminales)
 
-            # Si es "terminal" agregarlo a la lista
-            if self.__simboloEs(simboloSiguiente) == "terminal":
-                simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, [simboloSiguiente])
-
-            # Si es "noTerminal" agregar los primeros de ese noTerminal
-            elif self.__simboloEs(simboloSiguiente) == "noTerminal":
-                simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerPrimerosDelNoTerminal(simboloSiguiente))
-            
             # Si es "λ" agregar los siguientes del noTerminal
-            elif simboloSiguiente == "λ":
+            if simboloSiguiente == "λ":
                 # Si el noTerminal de la produccion es diferente al noTerminal dado se
                 # agrega los siguientes del noTerminal de la produccion, si son la misma
                 # noTerminal, no hacer nada
                 if produccion.noTerminal != noTerminal:
-                    simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntosSimbolosSiguientes(produccion.noTerminal))
+                    simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntosSimbolosSiguientesYaExistente(produccion.noTerminal))
+
+            # Si es "terminal" agregarlo a la lista
+            elif self.__simboloEs(simboloSiguiente) == "terminal":
+                simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, [simboloSiguiente])
+
+            # Si es "noTerminal" agregar los primeros de ese noTerminal
+            elif self.__simboloEs(simboloSiguiente) == "noTerminal":
+                simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntoPrimerosYaExistente(simboloSiguiente))
+
+                # Si entre los primeros esta "λ", agregar los siguientes del noTerminal y
+                # quitar "λ" de la lista
+                if "λ" in simboloSiguiente:
+                    simbolosSiguientes.remove("λ")
+                    simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntosSimbolosSiguientesYaExistente(produccion.noTerminal))
+
             else:
                 print("Error: simbolo no reconocido")
 
@@ -142,7 +167,13 @@ class Gramatica:
         """
         Encuentra los siguientes de todos los noTerminales de la gramática.
         """
-        for noTerminal in self.noTerminales:
-            siguientesSimbolos = self.__obtenerConjuntosSimbolosSiguientes(noTerminal)
-            siguientes = Siguientes(noTerminal, siguientesSimbolos)
-            self.siguientes.append(siguientes)
+
+        # Cargar los siguientes si los primeros ya fueron cargados
+        if len(self.primeros) != 0:
+
+            for noTerminal in self.noTerminales:
+                siguientesSimbolos = self.__obtenerConjuntosSimbolosSiguientes(noTerminal)
+                # siguientes = Siguientes(noTerminal, siguientesSimbolos)
+                # self.siguientes.append(siguientes)
+                # TEST
+                print("Siguientes de " + noTerminal + ": " + str(siguientesSimbolos))

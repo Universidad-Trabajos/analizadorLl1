@@ -1,3 +1,4 @@
+from copy import copy
 from typing import List
 
 
@@ -26,8 +27,20 @@ class Produccion:
                 if self.derivacion.index(terminal) == 0:
                     return terminal
 
-    def contieneNoTerminal(self, noTerminal: str) -> bool:
-        return self.derivacion.find(noTerminal) != -1
+    def contieneNoTerminal(self, noTerminal: str, noTerminales: List[str]) -> bool:
+        """
+        Retorna True si la produccion contiene el noTerminal dado.
+        """
+        copiaDerivacion = copy(self.derivacion)
+
+        # Si la noTerminal no tiene comilla simple las noTerminales que
+        # tienen comilla simple se deben de quitar de la derivacion
+        if noTerminal.find("'") == -1:
+            for noTerminalItem in noTerminales:
+                if noTerminalItem.find("'") != -1:
+                    copiaDerivacion = copiaDerivacion.replace(noTerminalItem, "")
+
+        return copiaDerivacion.find(noTerminal) != -1
 
     def obtenerSimboloSiguiente(self, noTerminal: str, noTerminales: List[str], terminales: List[str]) -> str:
         """
