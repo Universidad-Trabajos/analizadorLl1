@@ -1,6 +1,7 @@
 from typing import List
 from Models.gramatica import Gramatica
 from Models.Helpers.helperListas import agregarElementoSinRepetir
+from Models.produccion import Produccion
 
 ## AGREGAR ELEMENTOS SIN REPETIR A LISTA
 # lista = ["a", "b", "c"]
@@ -79,3 +80,10 @@ from Models.Helpers.helperListas import agregarElementoSinRepetir
 # cadena = " EA "
 # cadena = cadena.strip()
 # print("B"+cadena+"A")
+
+## OBTENER EL SIGUIENTE SIMBOLO DADO UN NO TERMINAL
+noTerminales = ["A", "B", "C"]
+terminales = ["a", "b", "m", "f", "gh", "c", "λ"]
+produccion = Produccion("A", "aB")
+simboloSiguiente = produccion.obtenerSimboloSiguiente("B", noTerminales, terminales)
+print(simboloSiguiente)
