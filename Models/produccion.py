@@ -67,6 +67,7 @@ class Produccion:
             return "λ"
 
         # obtener el primer simbolo de los caracteres siguientes
+        
         # buscar si el primer simbolo es un noTerminal
         for noTerminal in noTerminalesOrdenados:
             if caracteresSiguientes.find(noTerminal) != -1:

@@ -152,3 +152,9 @@ gramatica = Gramatica(noTerminales, terminales, producciones)
 # noTerminales = ["E", "E'", "T", "T'", "F"]
 # noTerminales.sort(key=lambda x: x.find("'"), reverse=True)
 # print(noTerminales)
+
+## SABER SI UN ELEMENTO ESTÁ EN UNA LISTA
+# lista = ["a", "b", "c"]
+# elemento = 'a'
+# if elemento in lista:
+#     print("Si está")

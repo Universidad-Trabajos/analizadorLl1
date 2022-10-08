@@ -103,14 +103,6 @@ class Gramatica:
                 listaProducciones.append(produccion)
         return listaProducciones
 
-    # def __obtenerSiguientesDelNoTerminal(self, noTerminal: str) -> List[Siguientes]:
-    #     """
-    #     Retorna la lista de siguientes del noTerminal dado.
-    #     """
-    #     for siguiente in self.siguientes:
-    #         if siguiente.noTerminal == noTerminal:
-    #             return siguiente.conjuntoNoTerminales
-
     def __obtenerConjuntosSimbolosSiguientesYaExistente(self, noTerminal: str) -> List[str]:
         """
         Retorna los siguientes de un noTerminal ya existente. No se realiza el analisis,
@@ -154,9 +146,9 @@ class Gramatica:
             elif self.__simboloEs(simboloSiguiente) == "noTerminal":
                 simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntoPrimerosYaExistente(simboloSiguiente))
 
-                # Si entre los primeros esta "λ", agregar los siguientes del noTerminal y
-                # quitar "λ" de la lista
-                if "λ" in simboloSiguiente:
+                # Si entre los primeros esta "λ", quitar "λ" de la lista y 
+                # agregar los siguientes del noTerminal
+                if "λ" in simbolosSiguientes:
                     simbolosSiguientes.remove("λ")
                     simbolosSiguientes = agregarElementoSinRepetir(simbolosSiguientes, self.__obtenerConjuntosSimbolosSiguientesYaExistente(produccion.noTerminal))
 
