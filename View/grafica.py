@@ -53,17 +53,19 @@ class Grafica:
             self.noTerminales, self.terminales, self.producciones)
         textoNoTerminales = ""
         textoTerminales = ""
+        textoConjuntoPrediccion = ""
         for i in listaRetorno[0]:
             textoNoTerminales += str(i) + "\n"
         for i in listaRetorno[1]:
             textoTerminales += str(i) + "\n"
-        
-        self.generarVentanaResultado(textoNoTerminales, textoTerminales)
+        for i in listaRetorno[2]:
+            textoConjuntoPrediccion += str(i) + "\n"
+
+        self.generarVentanaResultado(textoNoTerminales, textoTerminales, textoConjuntoPrediccion)
 
     def generarVentanaResultado(self, conjuntoPrimeros="", conjuntoSiguientes="", conjuntoPrediccion="") -> None:
         '''Genera la ventana con el resultado del análisis LL1'''
         # Valores por defecto
-        conjuntoPrediccion = "Prueba conjunto prediccion"
         self.ventanaResultado = tk.Tk()
         self.ventanaResultado.title("Resultado análisis LL1")
         self.ventana.geometry("{0}x{1}".format(
