@@ -173,7 +173,7 @@ class Gramatica:
 
             for noTerminal in self.noTerminales:
                 siguientesSimbolos = self.__obtenerConjuntosSimbolosSiguientes(noTerminal)
-                # siguientes = Siguientes(noTerminal, siguientesSimbolos)
-                # self.siguientes.append(siguientes)
+                siguientes = Siguientes(noTerminal, siguientesSimbolos)
+                self.siguientes.append(siguientes)
                 # TEST
                 print("Siguientes de " + noTerminal + ": " + str(siguientesSimbolos))
