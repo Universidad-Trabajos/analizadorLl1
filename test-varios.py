@@ -1,6 +1,7 @@
 from typing import List
 from Models.gramatica import Gramatica
 from Models.Helpers.helperListas import agregarElementoSinRepetir
+from Models.prediccion import Prediccion
 from Models.produccion import Produccion
 
 ## AGREGAR ELEMENTOS SIN REPETIR A LISTA
@@ -94,21 +95,21 @@ from Models.produccion import Produccion
 # print(lista)
 
 ## OBTENER LOS SIGUIENTES DE TODOS LOS NO TERMINALES
-noTerminales = ["E", "E'", "T", "T'", "F"]
-terminales = ["+", "*", "(", ")", "id"]
-producciones = [
-    ["E", "TE'"],
-    ["E'", "+TE'"],
-    ["E'", "λ"],
-    ["T", "FT'"],
-    ["T'", "*FT'"],
-    ["T'", "λ"],
-    ["F", "(E)"],
-    ["F", "id"]
-]
-gramatica = Gramatica(noTerminales, terminales, producciones)
-for prediccion in gramatica.predicciones:
-    print(prediccion)
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# terminales = ["+", "*", "(", ")", "id"]
+# producciones = [
+#     ["E", "TE'"],
+#     ["E'", "+TE'"],
+#     ["E'", "λ"],
+#     ["T", "FT'"],
+#     ["T'", "*FT'"],
+#     ["T'", "λ"],
+#     ["F", "(E)"],
+#     ["F", "id"]
+# ]
+# gramatica = Gramatica(noTerminales, terminales, producciones)
+# for prediccion in gramatica.predicciones:
+#     print(prediccion)
 # for primero in gramatica.primeros:
 #     print(primero)
 # print()
@@ -172,3 +173,25 @@ for prediccion in gramatica.predicciones:
 # produccion = Produccion("E", "E'")
 # primerSimbolo = produccion.obtenerPrimerSimbolo(noTerminales, terminales)
 # print("Primer simbolo: ", primerSimbolo)
+
+## RECORRER CON RANGE
+# for _ in range(1, 5):
+#     print("bucle")
+
+## OBTENER LA TABLA CONSTRUIDA
+noTerminales = ["E", "E'", "T", "T'", "F"]
+terminales = ["+", "*", "(", ")", "id"]
+producciones = [
+    ["E", "TE'"],
+    ["E'", "+TE'"],
+    ["E'", "λ"],
+    ["T", "FT'"],
+    ["T'", "*FT'"],
+    ["T'", "λ"],
+    ["F", "(E)"],
+    ["F", "id"]
+]
+gramatica = Gramatica(noTerminales, terminales, producciones)
+tabla = gramatica.obtenerTablaAnalisisSintactico()
+for fila in tabla:
+    print(fila)

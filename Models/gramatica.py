@@ -1,26 +1,40 @@
+from copy import copy
 from typing import List, Set
 from Models.prediccion import Prediccion
 from Models.primeros import Primeros
 from Models.produccion import Produccion
 from Models.Helpers.helperListas import agregarElementoSinRepetir
+from Models.Helpers.helperGramatica import obtenerTablaConstruida
 from Models.siguientes import Siguientes
 
 class Gramatica:
     """Conjunto de producciones de la gramatica"""
     noTerminales: List[str] = []
-    terminales: List[str] = ["λ"]
+    terminales: List[str] = []
     producciones: List[Produccion] = []
     primeros: List[Primeros] = []
     siguientes: List[Siguientes] = []
     predicciones: List[Prediccion] = []
 
+    lambdaPresenteEnListaTerminalesOriginal = False
+
     def __init__(self, noTerminales: List[str], terminales: List[str], producciones: List[List[str]]) -> None:
         self.noTerminales = noTerminales
-        self.terminales += terminales
+        self.__agregarLambdaATerminales(terminales)
         self.__cargarProducciones(producciones)
         self.__cargarTodosLosPrimeros()
         self.__cargarTodosLosSiguientes()
         self.__cargarTodosLosConjuntosPrediccion()
+
+    def __agregarLambdaATerminales(self, terminales: List[str]) -> None:
+        """
+        Agrega el simbolo "λ" a la lista de terminales si no está presente.
+        """
+        if "λ" not in terminales:
+            terminales.append("λ")
+            self.terminales = terminales
+        else:
+            self.lambdaPresenteEnListaTerminalesOriginal = True
 
     def __cargarProducciones(self, producciones: List[List[str]]) -> None:
         """
@@ -189,3 +203,18 @@ class Gramatica:
                 self.__obtenerConjuntosSimbolosSiguientesYaExistente,
                 self.__obtenerConjuntoPrimerosYaExistente)
             self.predicciones.append(conjuntoPrediccion)
+
+    def obtenerTablaAnalisisSintactico(self) -> List[List[str]]:
+        """
+        Retorna la tabla construida de análisis sintáctico.	
+        """
+
+        # Si lambda no está presente en la lista original de terminales, quitarlo de la lista
+        copiaTerminales = copy(self.terminales)
+        if not self.lambdaPresenteEnListaTerminalesOriginal:
+            copiaTerminales.remove("λ")
+        
+        terminalesGramatica = copiaTerminales
+
+        tablaConstruida = obtenerTablaConstruida(self.noTerminales, terminalesGramatica, self.predicciones)
+        return tablaConstruida
