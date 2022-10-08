@@ -62,7 +62,7 @@ class Main:
         self.prepararListas()
         gramatica = Gramatica(self.listaNoTerminales,
                               self.listaTerminales, self.listaProducciones)
-        listaRetorno = [gramatica.primeros, gramatica.siguientes]
+        listaRetorno = [gramatica.primeros, gramatica.siguientes, gramatica.predicciones]
         return listaRetorno
         # self.grafica.generarVentanaResultado()
         # for primero in gramatica.primeros:
