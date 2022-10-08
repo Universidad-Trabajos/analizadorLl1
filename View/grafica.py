@@ -51,15 +51,17 @@ class Grafica:
         self.producciones = self.entry3.get("1.0", 'end-1c')
         listaRetorno = self.callback(
             self.noTerminales, self.terminales, self.producciones)
-        texto = ""
+        textoNoTerminales, textoTerminales = ""
         for i in listaRetorno[0]:
-            texto += str(i) + "\n"
-        self.generarVentanaResultado(texto)
+            textoNoTerminales += str(i) + "\n"
+        for i in listaRetorno[1]:
+            textoTerminales += str(i) + "\n"
+        
+        self.generarVentanaResultado(textoNoTerminales, textoTerminales)
 
     def generarVentanaResultado(self, conjuntoPrimeros="", conjuntoSiguientes="", conjuntoPrediccion="") -> None:
         '''Genera la ventana con el resultado del análisis LL1'''
         # Valores por defecto
-        conjuntoSiguientes = "Prueba Siguientes"
         conjuntoPrediccion = "Prueba conjunto prediccion"
         self.ventanaResultado = tk.Tk()
         self.ventanaResultado.title("Resultado análisis LL1")
