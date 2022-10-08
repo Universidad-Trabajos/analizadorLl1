@@ -8,30 +8,11 @@ class Prediccion:
     produccion: Produccion
     conjuntoPrediccion: List[str] = []
 
-    def __init__(
-        self,
-        produccion: Produccion,
-        noTerminales: List[str],
-        terminales: List[str],
-        cb_simboloEs,
-        cb_siguientesExistentes,
-        cb_primerosExistentes) -> None:
-
+    def __init__(self, produccion: Produccion, noTerminales: List[str], terminales: List[str], cb_simboloEs, cb_siguientesExistentes, cb_primerosExistentes) -> None:
         self.produccion = produccion
-        self.__encontrarConjuntoPrediccion(
-            noTerminales,
-            terminales,
-            cb_simboloEs,
-            cb_siguientesExistentes,
-            cb_primerosExistentes)
+        self.__encontrarConjuntoPrediccion(noTerminales, terminales, cb_simboloEs, cb_siguientesExistentes, cb_primerosExistentes)
 
-    def __encontrarConjuntoPrediccion(
-        self,
-        noTerminales: List[str],
-        terminales: List[str],
-        cb_simboloEs,
-        cb_siguientesExistentes,
-        cb_primerosExistentes) -> None:
+    def __encontrarConjuntoPrediccion(self, noTerminales: List[str], terminales: List[str], cb_simboloEs, cb_siguientesExistentes, cb_primerosExistentes) -> None:
         """
         Encuentra el conjunto prediccion correspondiente a la produccion.
         """
