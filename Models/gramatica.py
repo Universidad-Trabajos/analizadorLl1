@@ -135,6 +135,7 @@ class Gramatica:
         for produccion in producciones:
 
             simboloSiguiente = produccion.obtenerSimboloSiguiente(noTerminal, self.noTerminales, self.terminales)
+            print("Simbolo siguiente: ", simboloSiguiente)
 
             # Si es "λ" agregar los siguientes del noTerminal
             if simboloSiguiente == "λ":

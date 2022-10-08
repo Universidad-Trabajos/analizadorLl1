@@ -114,3 +114,16 @@ gramatica.cargarTodosLosSiguientes()
 # noTerminales = ["E", "E'", "T", "T'", "F"]
 # produccion = Produccion("E", "TE'")
 # print(produccion.contieneNoTerminal("E", noTerminales))
+
+## CONOCER SIMBOLO SIGUIENTE
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# terminales = ["+", "*", "(", ")", "id"]
+# produccion = Produccion("E", "TE'")
+# simboloSiguiente = produccion.obtenerSimboloSiguiente("E'", noTerminales, terminales)
+# print("Simbolo siguiente: ", simboloSiguiente)
+
+## ENCONTRAR SIMBOLO DESPUÉS DE UN SIMBOLO DADO
+# cadena = "TE'"
+# simbolosDespuesDe = "E'"
+# tajadas = cadena.split(simbolosDespuesDe)
+# print(tajadas)

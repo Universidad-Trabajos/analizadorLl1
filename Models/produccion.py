@@ -47,11 +47,13 @@ class Produccion:
         Retorna el simbolo siguiente al noTerminal dado, ya sea terminal o noTerminal.
         """
 
-        # buscar el indice del noTerminal
-        indice = self.derivacion.index(noTerminal)
+        # # buscar el indice del noTerminal
+        # indice = self.derivacion.index(noTerminal)
 
-        # obtener los caracteres que estan despues del noTerminal
-        caracteresSiguientes = self.derivacion[indice + 1:]
+        # # obtener los caracteres que estan despues del noTerminal
+        # caracteresSiguientes = self.derivacion[indice + 1:]
+
+        caracteresSiguientes = self.derivacion.split(noTerminal)[1]
 
         # si no existe caracteres siguientes, retornar lambda
         if caracteresSiguientes == "":
