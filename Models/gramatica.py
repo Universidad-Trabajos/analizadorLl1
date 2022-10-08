@@ -16,6 +16,8 @@ class Gramatica:
         self.noTerminales = noTerminales
         self.terminales += terminales
         self.__cargarProducciones(producciones)
+        self.__cargarTodosLosPrimeros()
+        self.__cargarTodosLosSiguientes()
 
     def __cargarProducciones(self, producciones: List[List[str]]) -> None:
         """
@@ -74,7 +76,7 @@ class Gramatica:
                 print("Error: simbolo no reconocido")
         return simbolosPrimeros
 
-    def cargarTodosLosPrimeros(self) -> None:
+    def __cargarTodosLosPrimeros(self) -> None:
         """
         Encuentra los primeros de todos los noTerminales de la gramatica.
         """
@@ -163,7 +165,7 @@ class Gramatica:
 
         return simbolosSiguientes
 
-    def cargarTodosLosSiguientes(self) -> None:
+    def __cargarTodosLosSiguientes(self) -> None:
         """
         Encuentra los siguientes de todos los noTerminales de la gramática.
         """

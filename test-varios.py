@@ -107,8 +107,6 @@ producciones = [
     ["F", "id"]
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
-gramatica.cargarTodosLosPrimeros()
-gramatica.cargarTodosLosSiguientes()
 
 ## LA PRODUCCION CONTIENE UN NO TERMINAL
 # noTerminales = ["E", "E'", "T", "T'", "F"]
