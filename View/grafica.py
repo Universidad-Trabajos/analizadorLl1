@@ -1,6 +1,9 @@
 from msilib import Table
 import tkinter as tk
 from tkinter import END, Entry, scrolledtext, ttk
+from typing import List
+
+from Models.prediccion import Prediccion
 
 
 class Grafica:
@@ -151,6 +154,22 @@ class Grafica:
             treeview.insert("", count, text=j)
             count = count + 1
 
+    def obtenerTablaConstruida(self, noTerminales: List[str], terminales: List[str], conjuntosPrediccion: List[Prediccion]) -> List[List[str]]:
+        '''
+        Retorna una lista de listas, cada lista interna representa una fila de la tabla.
+        La tabla retornada contiene todos los datos necesitados: no terminales, terminales
+        y conjuntos de prediccion.
+
+        Ejemplo:
+        [
+            ["VT/VN",   "+",        "*",    "id",       "(",        ")",        "$"     ],
+            ["E",       "",         "",     "E->TE'",   "E->TE'",   "",         ""      ],
+            ["E'",      "E'->TE'",  "",     "",         "",         "E'->λ",    "E'->λ" ],
+            ...
+        ]
+        '''
+        pass
+    
 # def __generarTabla(self) -> None:
 #     lst = [(1, 'Raj', 'Mumbai', 19),
 #            (2, 'Aaryan', 'Pune', 18),
