@@ -101,13 +101,13 @@ class Grafica:
                  background='AntiqueWhite1',
                  foreground="black").grid(column=0,
                                           row=4)
-        
+
         text_area3 = scrolledtext.ScrolledText(self.ventanaResultado,
-                                        wrap=tk.WORD,
-                                        width=40,
-                                        height=5,
-                                        font=("Arial",
-                                                15))
+                                               wrap=tk.WORD,
+                                               width=40,
+                                               height=5,
+                                               font=("Arial",
+                                                     15))
 
         tk.Label(self.ventanaResultado,
                  text="Tabla Análisis Sintáctico",
@@ -131,15 +131,21 @@ class Grafica:
         self.__generarTabla()
         self.ventanaResultado.mainloop()
 
-    def __generarTabla(self, listaNoTerminales=['E', 'E', 'T', 'T', 'F'], listaTerminales=['+', '*', '(', ')', 'id']) -> None:
+    def __generarTabla(self, listaNoTerminales=['E', 'E\'', 'T', 'T\'', 'F'], listaTerminales=['+', '*', '(', ')', 'id']) -> None:
 
         treeview = ttk.Treeview(self.ventanaResultado,
                                 columns=tuple(listaTerminales))
         treeview.grid(column=0, row=7)
         treeview.heading("#0", text="VT/VN")
+        treeview.column("#0", width=50)
         count = 1
         for i in listaTerminales:
             treeview.heading("#{}".format(str(count)), text=i)
+            treeview.column("#{}".format(str(count)), width=50)
+            count = count + 1
+        count = 1
+        for j in listaNoTerminales:
+            treeview.insert("", count, text=j)
             count = count + 1
 
 # def __generarTabla(self) -> None:
