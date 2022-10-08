@@ -51,7 +51,8 @@ class Grafica:
         self.producciones = self.entry3.get("1.0", 'end-1c')
         listaRetorno = self.callback(
             self.noTerminales, self.terminales, self.producciones)
-        textoNoTerminales, textoTerminales = ""
+        textoNoTerminales = ""
+        textoTerminales = ""
         for i in listaRetorno[0]:
             textoNoTerminales += str(i) + "\n"
         for i in listaRetorno[1]:
@@ -127,7 +128,7 @@ class Grafica:
         text_area2.configure(state='disabled')
 
         text_area3.grid(column=0, row=5, pady=10, padx=10)
-        text_area3.insert(tk.INSERT, conjuntoSiguientes)
+        text_area3.insert(tk.INSERT, conjuntoPrediccion)
         text_area3.configure(state='disabled')
 
         self.__generarTabla()
