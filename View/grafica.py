@@ -1,5 +1,6 @@
+from msilib import Table
 import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import END, Entry, scrolledtext, ttk
 
 
 class Grafica:
@@ -50,8 +51,9 @@ class Grafica:
         self.producciones = self.entry3.get("1.0", 'end-1c')
         listaRetorno = self.callback(
             self.noTerminales, self.terminales, self.producciones)
-        texto=""
-        for i in listaRetorno[0]: texto+=str(i) + "\n"
+        texto = ""
+        for i in listaRetorno[0]:
+            texto += str(i) + "\n"
         self.generarVentanaResultado(texto)
 
     def generarVentanaResultado(self, conjuntoPrimeros="", conjuntoSiguientes="", conjuntoPrediccion="") -> None:
@@ -94,18 +96,25 @@ class Grafica:
                                                      15))
 
         tk.Label(self.ventanaResultado,
-                 text="Conjunto Producción",
+                 text="Conjunto Predicción",
                  font=("Arial", 15),
                  background='AntiqueWhite1',
                  foreground="black").grid(column=0,
                                           row=4)
-
+        
         text_area3 = scrolledtext.ScrolledText(self.ventanaResultado,
-                                               wrap=tk.WORD,
-                                               width=40,
-                                               height=5,
-                                               font=("Arial",
-                                                     15))
+                                        wrap=tk.WORD,
+                                        width=40,
+                                        height=5,
+                                        font=("Arial",
+                                                15))
+
+        tk.Label(self.ventanaResultado,
+                 text="Tabla Análisis Sintáctico",
+                 font=("Arial", 15),
+                 background='AntiqueWhite1',
+                 foreground="black").grid(column=0,
+                                          row=6)
 
         text_area.grid(column=0, row=1, pady=10, padx=10)
         text_area.insert(tk.INSERT, conjuntoPrimeros)
@@ -116,6 +125,34 @@ class Grafica:
         text_area2.configure(state='disabled')
 
         text_area3.grid(column=0, row=5, pady=10, padx=10)
-        text_area3.insert(tk.INSERT, conjuntoPrediccion)
+        text_area3.insert(tk.INSERT, conjuntoSiguientes)
         text_area3.configure(state='disabled')
+
+        self.__generarTabla()
         self.ventanaResultado.mainloop()
+
+    def __generarTabla(self, listaNoTerminales=['E', 'E', 'T', 'T', 'F'], listaTerminales=['+', '*', '(', ')', 'id']) -> None:
+
+        treeview = ttk.Treeview(self.ventanaResultado,
+                                columns=tuple(listaTerminales))
+        treeview.grid(column=0, row=7)
+        treeview.heading("#0", text="VT/VN")
+        count = 1
+        for i in listaTerminales:
+            treeview.heading("#{}".format(str(count)), text=i)
+            count = count + 1
+
+# def __generarTabla(self) -> None:
+#     lst = [(1, 'Raj', 'Mumbai', 19),
+#            (2, 'Aaryan', 'Pune', 18),
+#            (3, 'Vaishnavi', 'Mumbai', 20),
+#            (4, 'Rachna', 'Mumbai', 21),
+#            (5, 'Shubham', 'Delhi', 21)]
+
+#     total_rows = len(lst)
+#     total_columns = len(lst[0])
+#     for i in range(total_rows):
+#         for j in range(total_columns):
+#             e = Entry(self.ventanaResultado, width=5, fg='blue')
+#             e.grid(row=i, column=j)
+#             e.insert(END, lst[i][j])
