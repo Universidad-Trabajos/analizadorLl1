@@ -15,8 +15,14 @@ class Produccion:
         Se posiciona al principio de la derivacion y obtiene el primer simbolo, ya sea terminal o noTerminal.
         """
 
+        # Ordenar la lista de noTerminales; los noTerminales que tienen comilla simple
+        # deben de ir al principio de la lista
+        copiaNoTerminales = copy(noTerminales)
+        copiaNoTerminales.sort(key=lambda x: x.find("'"), reverse=True)
+        noTerminalesOrdenados = copiaNoTerminales
+
         # buscar si el primer simbolo es un noTerminal
-        for noTerminal in noTerminales:
+        for noTerminal in noTerminalesOrdenados:
             if self.derivacion.find(noTerminal) != -1:
                 if self.derivacion.index(noTerminal) == 0:
                     return noTerminal

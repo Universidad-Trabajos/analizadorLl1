@@ -1,4 +1,5 @@
 from typing import List, Set
+from Models.prediccion import Prediccion
 from Models.primeros import Primeros
 from Models.produccion import Produccion
 from Models.Helpers.helperListas import agregarElementoSinRepetir
@@ -11,6 +12,7 @@ class Gramatica:
     producciones: List[Produccion] = []
     primeros: List[Primeros] = []
     siguientes: List[Siguientes] = []
+    predicciones: List[Prediccion] = []
 
     def __init__(self, noTerminales: List[str], terminales: List[str], producciones: List[List[str]]) -> None:
         self.noTerminales = noTerminales
@@ -18,6 +20,7 @@ class Gramatica:
         self.__cargarProducciones(producciones)
         self.__cargarTodosLosPrimeros()
         self.__cargarTodosLosSiguientes()
+        self.__cargarTodosLosConjuntosPrediccion()
 
     def __cargarProducciones(self, producciones: List[List[str]]) -> None:
         """
@@ -169,3 +172,20 @@ class Gramatica:
                 siguientesSimbolos = self.__obtenerConjuntosSimbolosSiguientes(noTerminal)
                 siguientes = Siguientes(noTerminal, siguientesSimbolos)
                 self.siguientes.append(siguientes)
+
+    def __cargarTodosLosConjuntosPrediccion(self) -> None:
+        """
+        Carga todos los conjuntos de prediccion de la gramatica.
+        """
+        
+        # Por cada produccion obtener su correspondiente conjunto de prediccion y agregarlo
+        # a su lista correspondiente
+        for produccion in self.producciones:
+            conjuntoPrediccion = Prediccion(
+                produccion,
+                self.noTerminales,
+                self.terminales,
+                self.__simboloEs,
+                self.__obtenerConjuntosSimbolosSiguientesYaExistente,
+                self.__obtenerConjuntoPrimerosYaExistente)
+            self.predicciones.append(conjuntoPrediccion)

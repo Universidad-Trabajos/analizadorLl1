@@ -107,6 +107,13 @@ producciones = [
     ["F", "id"]
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
+for prediccion in gramatica.predicciones:
+    print(prediccion.toString())
+# for primero in gramatica.primeros:
+#     print(primero)
+# print()
+# for siguiente in gramatica.siguientes:
+#     print(siguiente)
 
 ## LA PRODUCCION CONTIENE UN NO TERMINAL
 # noTerminales = ["E", "E'", "T", "T'", "F"]
@@ -158,3 +165,10 @@ gramatica = Gramatica(noTerminales, terminales, producciones)
 # elemento = 'a'
 # if elemento in lista:
 #     print("Si está")
+
+## OBTENER PRIMER SIMBOLO DE LA DERIVACION
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# terminales = ["+", "*", "(", ")", "id"]
+# produccion = Produccion("E", "E'")
+# primerSimbolo = produccion.obtenerPrimerSimbolo(noTerminales, terminales)
+# print("Primer simbolo: ", primerSimbolo)
