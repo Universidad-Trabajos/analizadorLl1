@@ -117,7 +117,7 @@ gramatica = Gramatica(noTerminales, terminales, producciones)
 # noTerminales = ["E", "E'", "T", "T'", "F"]
 # terminales = ["+", "*", "(", ")", "id"]
 # produccion = Produccion("E", "TE'")
-# simboloSiguiente = produccion.obtenerSimboloSiguiente("E'", noTerminales, terminales)
+# simboloSiguiente = produccion.obtenerSimboloSiguiente("T", noTerminales, terminales)
 # print("Simbolo siguiente: ", simboloSiguiente)
 
 ## ENCONTRAR SIMBOLO DESPUÉS DE UN SIMBOLO DADO
@@ -125,3 +125,30 @@ gramatica = Gramatica(noTerminales, terminales, producciones)
 # simbolosDespuesDe = "E'"
 # tajadas = cadena.split(simbolosDespuesDe)
 # print(tajadas)
+
+## SABER SI UN SIMBOLO ESTÁ EN UNA CADENA
+# cadena = "A'BE'C'a"
+# simbolo = "A'"
+# indiceLugarSimbolo = cadena.find(simbolo)
+# if indiceLugarSimbolo != -1:
+#     print("Si está", indiceLugarSimbolo)
+
+## ORDENAR LISTA NO TERMINALES, LOS DE COMILLAS SIMPLES AL PRINCIPIO
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# noTerminalesOrdenados = []
+# # Los no terminales con comillas simples al principio
+# for noTerminal in noTerminales:
+#     if noTerminal.find("'") != -1:
+#         noTerminalesOrdenados.append(noTerminal)
+# # Quitar los no terminales con comillas simples de la lista original
+# for noTerminal in noTerminalesOrdenados:
+#     noTerminales.remove(noTerminal)
+# # Agregar los no terminales sin comillas simples al final
+# for noTerminal in noTerminales:
+#     noTerminalesOrdenados.append(noTerminal)
+# print(noTerminalesOrdenados)
+
+## ORDENAR LISTA NO TERMINALES, LOS DE COMILLAS SIMPLES AL PRINCIPIO
+# noTerminales = ["E", "E'", "T", "T'", "F"]
+# noTerminales.sort(key=lambda x: x.find("'"), reverse=True)
+# print(noTerminales)

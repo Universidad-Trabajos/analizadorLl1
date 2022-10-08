@@ -47,13 +47,20 @@ class Produccion:
         Retorna el simbolo siguiente al noTerminal dado, ya sea terminal o noTerminal.
         """
 
-        # # buscar el indice del noTerminal
-        # indice = self.derivacion.index(noTerminal)
-
-        # # obtener los caracteres que estan despues del noTerminal
-        # caracteresSiguientes = self.derivacion[indice + 1:]
-
+        '''
+        Dado un simbolo cualquiera, se toma toda la parte derecha a dicho simbolo.
+        Un ejemplos es:
+        cadena = "abcdedf"
+        simbolo = "d"
+        caracteresSiguientes = "edf"
+        '''
         caracteresSiguientes = self.derivacion.split(noTerminal)[1]
+
+        # Ordenar la lista de noTerminales; los noTerminales que tienen comilla simple
+        # deben de ir al principio de la lista
+        copiaNoTerminales = copy(noTerminales)
+        copiaNoTerminales.sort(key=lambda x: x.find("'"), reverse=True)
+        noTerminalesOrdenados = copiaNoTerminales
 
         # si no existe caracteres siguientes, retornar lambda
         if caracteresSiguientes == "":
@@ -61,7 +68,7 @@ class Produccion:
 
         # obtener el primer simbolo de los caracteres siguientes
         # buscar si el primer simbolo es un noTerminal
-        for noTerminal in noTerminales:
+        for noTerminal in noTerminalesOrdenados:
             if caracteresSiguientes.find(noTerminal) != -1:
                 if caracteresSiguientes.index(noTerminal) == 0:
                     return noTerminal
