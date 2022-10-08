@@ -63,7 +63,7 @@ class Grafica:
 
         self.generarVentanaResultado(textoNoTerminales, textoTerminales, textoConjuntoPrediccion)
 
-    def generarVentanaResultado(self, conjuntoPrimeros="", conjuntoSiguientes="", conjuntoPrediccion="") -> None:
+    def generarVentanaResultado(self, conjuntoPrimeros, conjuntoSiguientes, conjuntoPrediccion) -> None:
         '''Genera la ventana con el resultado del análisis LL1'''
         # Valores por defecto
         self.ventanaResultado = tk.Tk()
