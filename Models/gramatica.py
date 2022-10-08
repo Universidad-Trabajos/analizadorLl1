@@ -70,11 +70,11 @@ class Gramatica:
 
             # Si es "terminal" agregarlo a la lista
             if self.__simboloEs(simbolo) == "terminal":
-                agregarElementoSinRepetir(simbolosPrimeros, [simbolo])
+                simbolosPrimeros = agregarElementoSinRepetir(simbolosPrimeros, [simbolo])
 
             # Si es "noTerminal" agregar los primeros de ese noTerminal
             elif self.__simboloEs(simbolo) == "noTerminal":
-                agregarElementoSinRepetir(simbolosPrimeros, self.__obtenerSimbolosPrimeros(simbolo))
+                simbolosPrimeros = agregarElementoSinRepetir(simbolosPrimeros, self.__obtenerSimbolosPrimeros(simbolo))
             else:
                 print("Error: simbolo no reconocido")
         return simbolosPrimeros

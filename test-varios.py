@@ -108,7 +108,7 @@ producciones = [
 ]
 gramatica = Gramatica(noTerminales, terminales, producciones)
 for prediccion in gramatica.predicciones:
-    print(prediccion.toString())
+    print(prediccion)
 # for primero in gramatica.primeros:
 #     print(primero)
 # print()

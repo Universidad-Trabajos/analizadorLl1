@@ -47,6 +47,7 @@ class Prediccion:
         es "noTerminal" agregar los primeros simbolos de la no terminal de
         la produccion.
         '''
+        self.conjuntoPrediccion = []
         if tipoSimbolo == "terminal":
             self.conjuntoPrediccion.append(primerSimbolo)
         elif tipoSimbolo == "noTerminal":
@@ -60,9 +61,6 @@ class Prediccion:
             self.conjuntoPrediccion = cb_siguientesExistentes(
                 self.produccion.noTerminal)
 
-        print("Conjunto prediccion de la produccion: {}".format(self.conjuntoPrediccion))
-        print("")
-
     def __cadenaElementos(self) -> str:
         cadena: str = ""
         count = 0
@@ -75,7 +73,5 @@ class Prediccion:
         return '{' + cadena+'}'
 
     def __str__(self) -> str:
-        return self.__cadenaElementos()
-
-    def toString(self):
-        return self.conjuntoPrediccion
+        texto = "cp({}) = {}"
+        return texto.format(self.produccion, self.__cadenaElementos())
