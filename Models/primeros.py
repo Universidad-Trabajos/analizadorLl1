@@ -9,7 +9,7 @@ class Primeros:
         self.noTerminal = noTerminal
         self.conjuntoNoTerminales = conjuntoNoTerminales
 
-    def cadenaNoTerminales(self) -> str:
+    def __cadenaNoTerminales(self) -> str:
         cadena: str = ""
         count = 0
         for noTerminal in self.conjuntoNoTerminales:
@@ -22,4 +22,4 @@ class Primeros:
 
     def __str__(self) -> str:
         texto = "prim({}) = {}"
-        return texto.format(self.noTerminal, self.cadenaNoTerminales())
+        return texto.format(self.noTerminal, self.__cadenaNoTerminales())
