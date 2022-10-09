@@ -1,6 +1,7 @@
 from msilib import Table
 import tkinter as tk
 from tkinter import END, Entry, scrolledtext, ttk
+from turtle import width
 from typing import List
 
 from Models.prediccion import Prediccion
@@ -12,6 +13,7 @@ class Grafica:
     noTerminales = ""
     terminales = ""
     producciones = ""
+    analisisSintactico = ""
 
     def __init__(self, callback):
         self.callback = callback
@@ -64,9 +66,10 @@ class Grafica:
         for i in listaRetorno[2]:
             textoConjuntoPrediccion += str(i) + "\n"
 
-        self.generarVentanaResultado(textoNoTerminales, textoTerminales, textoConjuntoPrediccion)
+        self.generarVentanaResultado(
+            textoNoTerminales, textoTerminales, textoConjuntoPrediccion, listaRetorno[3])
 
-    def generarVentanaResultado(self, conjuntoPrimeros, conjuntoSiguientes, conjuntoPrediccion) -> None:
+    def generarVentanaResultado(self, conjuntoPrimeros, conjuntoSiguientes, conjuntoPrediccion, tablaSintactico) -> None:
         '''Genera la ventana con el resultado del análisis LL1'''
         # Valores por defecto
         self.ventanaResultado = tk.Tk()
@@ -136,25 +139,22 @@ class Grafica:
         text_area3.insert(tk.INSERT, conjuntoPrediccion)
         text_area3.configure(state='disabled')
 
-        self.__generarTabla()
+        self.__generarTabla(tablaSintactico)
         self.ventanaResultado.mainloop()
 
-    def __generarTabla(self, listaNoTerminales=['E', 'E\'', 'T', 'T\'', 'F'], listaTerminales=['+', '*', '(', ')', 'id']) -> None:
-
+    def __generarTabla(self, listaTablaAnalisisSintactico: List[List[str]]) -> None:
         treeview = ttk.Treeview(self.ventanaResultado,
-                                columns=tuple(listaTerminales))
+                                columns=tuple(listaTablaAnalisisSintactico[0]))
         treeview.grid(column=0, row=7)
-        treeview.heading("#0", text="VT/VN")
-        treeview.column("#0", width=50)
         count = 1
-        for i in listaTerminales:
+        for i in listaTablaAnalisisSintactico[0]:
+            treeview.column("#{}".format(str(count)),width=80)
             treeview.heading("#{}".format(str(count)), text=i)
-            treeview.column("#{}".format(str(count)), width=50)
             count = count + 1
-        count = 1
-        for j in listaNoTerminales:
-            treeview.insert("", count, text=j)
-            count = count + 1
+        treeview.column("#0", width=0)
+        for i in range(1, len(listaTablaAnalisisSintactico)):
+            treeview.insert("", i, values=tuple(
+                listaTablaAnalisisSintactico[i]))
 
 # def __generarTabla(self) -> None:
 #     lst = [(1, 'Raj', 'Mumbai', 19),
