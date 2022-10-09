@@ -55,6 +55,15 @@ class Main:
         self.prepararListaProducciones()
 
     def generarAnalisis(self, cadenaNoTerminales: str, cadenaTerminales: str, cadenaProducciones: str) -> List:
+        # Reset de variables
+        self.cadenaNoTerminales = ''
+        self.cadenaTerminales = ''
+        self.cadenaProducciones = ''
+        self.listaNoTerminales = []
+        self.listaTerminales = []
+        self.listaProducciones = []
+
+        # Asignacion de variables
         self.cadenaNoTerminales = cadenaNoTerminales
         self.cadenaTerminales = cadenaTerminales
         self.cadenaProducciones = cadenaProducciones
