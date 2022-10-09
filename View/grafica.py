@@ -46,6 +46,11 @@ class Grafica:
         button.pack()
 
     def ejecutar(self) -> None:
+        # Reset de variables
+        self.noTerminales = ''
+        self.terminales = ''
+        self.producciones = ''
+
         self.capturarEntradas()
 
     def capturarEntradas(self):

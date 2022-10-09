@@ -19,6 +19,15 @@ class Gramatica:
     lambdaPresenteEnListaTerminalesOriginal = False
 
     def __init__(self, noTerminales: List[str], terminales: List[str], producciones: List[List[str]]) -> None:
+        # Reset de variables
+        self.noTerminales = []
+        self.terminales = []
+        self.producciones = []
+        self.primeros = []
+        self.siguientes = []
+        self.predicciones = []
+
+        # Asignación de variables y ejecución de métodos iniciales
         self.noTerminales = noTerminales
         self.__agregarLambdaATerminales(terminales)
         self.__cargarProducciones(producciones)
