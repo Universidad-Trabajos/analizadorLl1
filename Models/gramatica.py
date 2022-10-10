@@ -41,9 +41,9 @@ class Gramatica:
         """
         if "λ" not in terminales:
             terminales.append("λ")
-            self.terminales = terminales
         else:
             self.lambdaPresenteEnListaTerminalesOriginal = True
+        self.terminales = terminales
 
     def __cargarProducciones(self, producciones: List[List[str]]) -> None:
         """
