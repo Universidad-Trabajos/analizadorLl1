@@ -8,8 +8,8 @@ from Models.prediccion import Prediccion
 
 
 class Grafica:
-    anchoVentana = 700
-    altoVentana = 980
+    anchoVentana = 300
+    altoVentana = 550
     noTerminales = ""
     terminales = ""
     producciones = ""
@@ -41,7 +41,7 @@ class Grafica:
         l3 = tk.Label(self.ventana, text="Ingrese las producciones: ")
         l3.pack()
         self.entry3 = tk.Text(self.ventana)
-        self.entry3.pack(padx=280)
+        self.entry3.pack(padx=10)
 
         button = tk.Button(self.ventana, text="Generar Análisis",
                            bg="light blue", borderwidth=5, command=lambda: self.ejecutar())
